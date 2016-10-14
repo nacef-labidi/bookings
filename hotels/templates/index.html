@@ -1,0 +1,7 @@
+<h1>Liste des hotels</h1>
+
+<ul>
+    {% for hotel in hotels %}
+        <li>{{ hotel.nom }} : {{ hotel.etoiles }} étoiles</li>
+    {% endfor %}
+</ul>
