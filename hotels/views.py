@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from models import Hotel
+from .models import Hotel
 
 def index(request):
     hotels = Hotel.objects.all()
