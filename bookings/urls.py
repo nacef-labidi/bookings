@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from hotels import views
+from hotels import views as hv
+from flights import views as fv
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hotels$', views.index),
+    url(r'^hotels$', hv.index),
+    url(r'^vols$', fv.index),
 ]

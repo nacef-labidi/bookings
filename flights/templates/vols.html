@@ -1,0 +1,24 @@
+<table>
+    <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Origine</th>
+            <th>Destination</th>
+            <th>Depart</th>
+            <th>Arrivée</th>
+            <th>Modèle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vol in vols %}
+            <tr>
+                <td>{{ vol.numero }}</td>
+                <td>{{ vol.origine }}</td>
+                <td>{{ vol.destination }}</td>
+                <td>{{ vol.depart }}</td>
+                <td>{{ vol.arrivee }}</td>
+                <td>{{ vol.modele }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
