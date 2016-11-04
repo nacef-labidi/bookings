@@ -10,7 +10,7 @@ class HotelList(ListView):
 class HotelCreate(CreateView):
 	model = Hotel
 	fields = ['nom', 'description', 'etoiles', 'chambres']
-	success_url = '/hotels'
+	success_url = '/'
 
 class HotelDetail(DetailView):
 	model = Hotel

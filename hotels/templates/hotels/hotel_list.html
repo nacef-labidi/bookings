@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Liste des hotels</h1>
 
 <ul>
@@ -11,3 +14,4 @@
 </ul>
 
 <a href="{% url 'hotel-create' %}">Nouveau</a>
+{% endblock %}
