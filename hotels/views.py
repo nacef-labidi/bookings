@@ -14,3 +14,8 @@ class HotelCreate(CreateView):
 
 class HotelDetail(DetailView):
 	model = Hotel
+
+	def get_context_data(self, **kwargs):
+		context = super(HotelDetail, self).get_context_data(**kwargs)
+		context['etoiles_range'] = range(self.object.etoiles)
+		return context
