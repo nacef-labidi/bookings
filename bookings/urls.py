@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
+import settings
 
 from hotels import views as hv
 from flights import views as fv
@@ -25,4 +27,8 @@ urlpatterns = [
 	url(r'^hotels/(?P<pk>\d+)$', hv.HotelDetail.as_view(), name='hotel-detail'),
 	url(r'^hotel/new$', hv.HotelCreate.as_view(), name='hotel-create'),
     url(r'^vols$', fv.index),
-]
+    url(r'^contact$', hv.ContactView.as_view(), name='contact'),
+
+    url('^accounts/', include('django.contrib.auth.urls')),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

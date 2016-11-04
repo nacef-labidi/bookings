@@ -9,6 +9,7 @@ class Hotel(models.Model):
     etoiles = models.PositiveSmallIntegerField()
     chambres = models.PositiveIntegerField()
     clients = models.ManyToManyField('Client', through='Reservation')
+    photo = models.ImageField(upload_to='photos', null=True)
 
     def __str__(self):
         return self.nom
