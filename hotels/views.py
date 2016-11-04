@@ -1,7 +1,16 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 
 from .models import Hotel
 
-def index(request):
-    hotels = Hotel.objects.all()
-    return render(request, 'index.html', {'hotels': hotels})
+class HotelList(ListView):
+	model = Hotel
+
+class HotelCreate(CreateView):
+	model = Hotel
+	fields = ['nom', 'description', 'etoiles', 'chambres']
+	success_url = '/hotels'
+
+class HotelDetail(DetailView):
+	model = Hotel

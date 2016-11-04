@@ -21,6 +21,8 @@ from flights import views as fv
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hotels$', hv.index),
+    url(r'^hotels$', hv.HotelList.as_view()),
+	url(r'^hotels/(?P<pk>\d+)$', hv.HotelDetail.as_view(), name='hotel-detail'),
+	url(r'^hotel/new$', hv.HotelCreate.as_view(), name='hotel-create'),
     url(r'^vols$', fv.index),
 ]
