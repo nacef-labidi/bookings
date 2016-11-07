@@ -1,11 +1,9 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import Hotel
-from .forms import ContactForm
 
 # @login_required()
 # def index(request):
@@ -26,19 +24,3 @@ class HotelDetail(DetailView):
 		context = super(HotelDetail, self).get_context_data(**kwargs)
 		context['etoiles_range'] = range(self.object.etoiles)
 		return context
-
-
-@method_decorator(login_required, name='dispatch')
-class ContactView(FormView):
-	form_class = ContactForm
-	fields= '__all__'
-	template_name = 'contact.html'
-
-
-
-
-
-
-
-
-

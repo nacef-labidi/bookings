@@ -27,8 +27,4 @@ urlpatterns = [
 	url(r'^hotels/(?P<pk>\d+)$', hv.HotelDetail.as_view(), name='hotel-detail'),
 	url(r'^hotel/new$', hv.HotelCreate.as_view(), name='hotel-create'),
     url(r'^vols$', fv.index),
-    url(r'^contact$', hv.ContactView.as_view(), name='contact'),
-
-    url('^accounts/', include('django.contrib.auth.urls')),
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
