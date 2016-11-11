@@ -21,7 +21,32 @@ import settings
 from hotels import views as hv
 from flights import views as fv
 
+from hotels.models import Hotel
+
+from rest_framework import serializers, viewsets, routers
+
+class HotelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hotel
+        fields = '__all__'
+
+class HotelViewSet(viewsets.ModelViewSet):
+    queryset = Hotel.objects.all()
+    serializer_class = HotelSerializer
+
+
+
+router = routers.DefaultRouter()
+router.register('hotels', HotelViewSet)
+
+
+
+
 urlpatterns = [
+
+    url(r'^api/', include(router.urls)),
+
+
     url(r'^admin/', admin.site.urls),
     # url(r'^$', hv.index),
     url(r'^$', hv.HotelList.as_view()),
@@ -29,6 +54,9 @@ urlpatterns = [
 	url(r'^hotel/new$', hv.HotelCreate.as_view(), name='hotel-create'),
     url(r'^vols$', fv.index),
     url(r'^contact$', hv.ContactView.as_view(), name='contact'),
+
+    #url(r'^reservation/create/', hv.ReservationCreate.as_view(), name='reservation-create'),
+    url(r'^reservation/create/(?P<hotel_id>\d+)/', hv.ReservationCreate.as_view(), name='reservation-create'),
 
     url(r'^accounts/', include('allauth.urls')),
 

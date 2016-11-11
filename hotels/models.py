@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Hotel(models.Model):
@@ -16,6 +17,7 @@ class Hotel(models.Model):
 
 
 class Client(models.Model):
+    user = models.OneToOneField(User, null=True)
     nom = models.CharField(max_length=255)
 
     def __str__(self):

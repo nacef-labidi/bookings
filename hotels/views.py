@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ContactForm
 
-from .models import Hotel
+from .models import Hotel, Reservation
 
 # @login_required()
 # def index(request):
@@ -34,3 +34,16 @@ class ContactView(LoginRequiredMixin, FormView):
 	template_name = 'contact.html'
 
 
+class ReservationCreate(CreateView):
+	model = Reservation
+	fields = ['hotel', 'date_reservation']
+	success_url = '/'
+
+	def form_valid(self, form):
+		form.instance.client = self.request.user.client
+		return super(ReservationCreate, self).form_valid(form)
+
+	def get_initial(self):
+		initial = super(ReservationCreate, self).get_initial()
+		initial['hotel'] = self.kwargs['hotel_id']
+		return initial
