@@ -18,29 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 import settings
 
-from rest_framework import serializers, viewsets, routers
-
 from hotels import views as hv
 from flights import views as fv
 
-from hotels.models import Hotel
-
-class HotelSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Hotel
-        fields = ('nom', 'description', 'chambres', 'etoiles', )
-
-class HotelViewSet(viewsets.ModelViewSet):
-    queryset = Hotel.objects.all()
-    serializer_class = HotelSerializer
-
-
-router = routers.DefaultRouter()
-router.register(r'hotels', HotelViewSet)
-
-
 urlpatterns = [
-    url('^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     # url(r'^$', hv.index),
     url(r'^$', hv.HotelList.as_view()),
